@@ -1,0 +1,89 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Produto {
+  id            String                   @id @default(uuid())
+  nome          String
+  marca         String
+  descricao     String
+  categorias    ProdutoCategoria[]
+  subcategorias ProdutoSubcategoria[]
+  cores         ProdutoCor[]
+  tamanhos      ProdutoTamanho[]
+  preco         Float
+  imagem        String
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+}
+
+model Categoria {
+  id       String                @id @default(uuid())
+  nome     String             @unique
+  produtos ProdutoCategoria[]
+}
+
+model ProdutoCategoria {
+  produtoId   String
+  categoriaId String
+  produto     Produto   @relation(fields: [produtoId], references: [id])
+  categoria   Categoria @relation(fields: [categoriaId], references: [id])
+
+  @@id([produtoId, categoriaId])
+}
+
+model Subcategoria {
+  id       String                   @id @default(uuid())
+  nome     String                @unique
+  produtos ProdutoSubcategoria[]
+}
+
+model ProdutoSubcategoria {
+  produtoId      String
+  subcategoriaId String
+  produto        Produto      @relation(fields: [produtoId], references: [id])
+  subcategoria   Subcategoria @relation(fields: [subcategoriaId], references: [id])
+
+  @@id([produtoId, subcategoriaId])
+}
+
+model Cor {
+  id       String          @id @default(uuid())
+  nome     String       @unique
+  produtos ProdutoCor[]
+}
+
+model ProdutoCor {
+  produtoId String
+  corId     String
+  produto   Produto @relation(fields: [produtoId], references: [id])
+  cor       Cor     @relation(fields: [corId], references: [id])
+
+  @@id([produtoId, corId])
+}
+
+model Tamanho {
+  id       String           @id @default(uuid())
+  nome     String           @unique
+  produtos ProdutoTamanho[]
+}
+
+model ProdutoTamanho {
+  produtoId String
+  tamanhoId String
+  produto   Produto @relation(fields: [produtoId], references: [id])
+  tamanho   Tamanho @relation(fields: [tamanhoId], references: [id])
+
+  @@id([produtoId, tamanhoId])
+}
