@@ -1,4 +1,4 @@
-const dados = [
+const produtosPreset = [
     {
         nome: "Camiseta",
         marca: "Nike",
@@ -27,11 +27,11 @@ const dados = [
     },
     {
         nome: "Calça",
-        marca: "",
-        descricao: "",
+        marca: "Levi's",
+        descricao: "Calça jeans azul escuro, confortável e resistente",
         categorias: ["Calças"],
-        subcategorias: [],
-        cores: [],
+        subcategorias: ["Jeans"],
+        cores: ["Azul"],
         tamanhos: [{
             nome: "P",
             quantidade: 3
@@ -53,11 +53,11 @@ const dados = [
     },
     {
         nome: "Shorts",
-        marca: "",
-        descricao: "",
+        marca: "Adidas",
+        descricao: "Shorts esportivo preto, leve e respirável",
         categorias: ["Shorts"],
-        subcategorias: [],
-        cores: [],
+        subcategorias: ["Esportivo"],
+        cores: ["Preto"],
         tamanhos: [{
             nome: "P",
             quantidade: 2
@@ -79,11 +79,11 @@ const dados = [
     },
     {
         nome: "Vestido",
-        marca: "",
-        descricao: "",
+        marca: "Zara",
+        descricao: "Vestido longo vermelho, ideal para festas e eventos",
         categorias: ["Vestidos"],
-        subcategorias: [],
-        cores: [],
+        subcategorias: ["Festa"],
+        cores: ["Vermelho"],
         tamanhos: [{
             nome: "P",
             quantidade: 5
@@ -105,11 +105,11 @@ const dados = [
     },
     {
         nome: "Saia",
-        marca: "",
-        descricao: "",
+        marca: "H&M",
+        descricao: "Saia xadrez colegial, estilo clássico e versátil",
         categorias: ["Saias"],
-        subcategorias: [],
-        cores: [],
+        subcategorias: ["Colegio"],
+        cores: ["Xadrez"],
         tamanhos: [{
             nome: "P",
             quantidade: 4
@@ -131,11 +131,11 @@ const dados = [
     },
     {
         nome: "Blusa",
-        marca: "",
-        descricao: "",
+        marca: "Mooboo",
+        descricao: "Blusa de moletom aberta com bolso e capuz",
         categorias: ["Blusas"],
-        subcategorias: [],
-        cores: [],
+        subcategorias: ["Moletom"],
+        cores: ["Cinza"],
         tamanhos: [{
             nome: "P",
             quantidade: 1
@@ -157,11 +157,11 @@ const dados = [
     },
     {
         nome: "Bermuda",
-        marca: "",
-        descricao: "",
+        marca: "Quiksilver",
+        descricao: "Bermuda casual, ideal para o dia a dia",
         categorias: ["Bermudas"],
-        subcategorias: [],
-        cores: [],
+        subcategorias: ["Casual"],
+        cores: ["Bege"],
         tamanhos: [{
             nome: "P",
             quantidade: 2
@@ -183,11 +183,11 @@ const dados = [
     },
     {
         nome: "Macacão",
-        marca: "",
-        descricao: "",
+        marca: "Forever 21",
+        descricao: "Macacão laranja de verão, confortável e estiloso",
         categorias: ["Macacões"],
-        subcategorias: [],
-        cores: [],
+        subcategorias: ["Verão"],
+        cores: ["Laranja"],
         tamanhos: [{
             nome: "P",
             quantidade: 3
@@ -209,11 +209,11 @@ const dados = [
     },
     {
         nome: "Jaqueta",
-        marca: "",
-        descricao: "",
+        marca: "The North Face",
+        descricao: "Jaqueta puffer preta, ideal para o inverno",
         categorias: ["Jaquetas"],
-        subcategorias: [],
-        cores: [],
+        subcategorias: ["Puffer"],
+        cores: ["Preto"],
         tamanhos: [{
             nome: "P",
             quantidade: 1
@@ -235,11 +235,11 @@ const dados = [
     },
     {
         nome: "Sapato",
-        marca: "",
-        descricao: "",
+        marca: "Louie",
+        descricao: "Sapato social Derby, couro legítimo, cor marrom",
         categorias: ["Sapatos"],
-        subcategorias: [],
-        cores: [],
+        subcategorias: ["Social"],
+        cores: ["Marrom"],
         tamanhos: [{
             nome: "P",
             quantidade: 2
@@ -261,11 +261,11 @@ const dados = [
     },
     {
         nome: "Bolsa",
-        marca: "",
-        descricao: "",
+        marca: "Vizzano",
+        descricao: "Bolsa feminina com duas alças, cor preta",
         categorias: ["Bolsas"],
-        subcategorias: [],
-        cores: [],
+        subcategorias: ["Transversal"],
+        cores: ["Preto"],
         tamanhos: [{
             nome: "P",
             quantidade: 3
@@ -287,11 +287,11 @@ const dados = [
     },
     {
         nome: "Relógio",
-        marca: "",
-        descricao: "",
+        marca: "Bewatch",
+        descricao: "Relógio feminino, pulseira de couro marrom",
         categorias: ["Relógios"],
-        subcategorias: [],
-        cores: [],
+        subcategorias: ["Feminino"],
+        cores: ["Marrom"],
         tamanhos: [{
             nome: "P",
             quantidade: 4
@@ -313,11 +313,11 @@ const dados = [
     },
     {
         nome: "Óculos",
-        marca: "",
-        descricao: "",
+        marca: "Armani",
+        descricao: "Óculos de grau, armação preta e elegante",
         categorias: ["Óculos"],
-        subcategorias: [],
-        cores: [],
+        subcategorias: ["Grau"],
+        cores: ["Preto"],
         tamanhos: [{
             nome: "P",
             quantidade: 1
@@ -338,3 +338,4 @@ const dados = [
         imagem: "https://img.irroba.com.br/fit-in/450x450/filters:format(webp):fill(transparent):quality(80)/authaeeo/catalog/oculos-de-grau/armani/0ea3185-5875-54.png"
     }
 ]
+export default produtosPreset;
