@@ -7,10 +7,7 @@
     "dev": "nodemon src/index.ts",
     "build": "tsc"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "author": "Bruno Brandão Silva",
   "dependencies": {
     "@prisma/client": "^5.16.2",
     "cors": "^2.8.5",
