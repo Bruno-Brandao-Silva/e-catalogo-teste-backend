@@ -1,10 +1,9 @@
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
-import { PrismaClient } from '@prisma/client';
-import ResetDataBase from './preset_data';
+import ResetDataBase from './resetDataBase';
+import ProductRouter from './routes/products';
 
 const app = express();
-const prisma = new PrismaClient();
 
 app.use(cors());
 app.use(express.json());
@@ -18,50 +17,8 @@ app.get('/', (req, res) => {
   res.send('API online!');
 });
 
-app.get('/produtos/page/:page', async (req, res, next) => {
-  try {
-    const page = Number(req.params.page);
-    if (isNaN(page) || page < 1) {
-      return res.status(400).json({ error: 'Número de página inválido' });
-    }
+app.use('/produtos', ProductRouter);
 
-    const products = await prisma.produto.findMany({
-      skip: (page - 1) * 5,
-      take: 5,
-    });
-    res.json(products);
-  } catch (error) {
-    next(error);
-  }
-});
-
-app.get('/produtos/id/:id', async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const product = await prisma.produto.findUnique({
-      where: {
-        id,
-      },
-    });
-
-    if (!product) {
-      return res.status(404).json({ error: 'Product not found' });
-    }
-
-    res.json(product);
-  } catch (error) {
-    next(error);
-  }
-});
-
-const gracefulShutdown = () => {
-  prisma.$disconnect()
-    .catch(e => console.error('Falha ao desconectar do banco de dados', e))
-    .finally(() => process.exit());
-};
-
-process.on('SIGTERM', gracefulShutdown);
-process.on('SIGINT', gracefulShutdown);
 
 ResetDataBase().then(() => {
   app.listen(3000, () => {
