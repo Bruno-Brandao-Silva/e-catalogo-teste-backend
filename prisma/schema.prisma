@@ -14,14 +14,14 @@ datasource db {
 }
 
 model Produto {
-  id            String                   @id @default(uuid())
+  id            Int                @id @default(autoincrement())
   nome          String
   marca         String
   descricao     String
   categorias    ProdutoCategoria[]
   subcategorias ProdutoSubcategoria[]
   cores         ProdutoCor[]
-  tamanhos      ProdutoTamanho[]
+  tamanhos      Tamanho[]
   preco         Float
   imagem        String
   createdAt     DateTime              @default(now())
@@ -29,61 +29,54 @@ model Produto {
 }
 
 model Categoria {
-  id       String                @id @default(uuid())
+  id       String             @id @default(uuid())
   nome     String             @unique
   produtos ProdutoCategoria[]
 }
 
 model ProdutoCategoria {
-  produtoId   String
+  produtoId   Int
   categoriaId String
-  produto     Produto   @relation(fields: [produtoId], references: [id])
-  categoria   Categoria @relation(fields: [categoriaId], references: [id])
+  produto     Produto   @relation(fields: [produtoId], references: [id], onDelete: Cascade)
+  categoria   Categoria @relation(fields: [categoriaId], references: [id], onDelete: Cascade)
 
   @@id([produtoId, categoriaId])
 }
 
 model Subcategoria {
-  id       String                   @id @default(uuid())
+  id       String                @id @default(uuid())
   nome     String                @unique
   produtos ProdutoSubcategoria[]
 }
 
 model ProdutoSubcategoria {
-  produtoId      String
+  produtoId      Int
   subcategoriaId String
-  produto        Produto      @relation(fields: [produtoId], references: [id])
-  subcategoria   Subcategoria @relation(fields: [subcategoriaId], references: [id])
+  produto        Produto      @relation(fields: [produtoId], references: [id], onDelete: Cascade)
+  subcategoria   Subcategoria @relation(fields: [subcategoriaId], references: [id], onDelete: Cascade)
 
   @@id([produtoId, subcategoriaId])
 }
 
 model Cor {
-  id       String          @id @default(uuid())
+  id       String       @id @default(uuid())
   nome     String       @unique
   produtos ProdutoCor[]
 }
 
 model ProdutoCor {
-  produtoId String
+  produtoId Int
   corId     String
-  produto   Produto @relation(fields: [produtoId], references: [id])
+  produto   Produto @relation(fields: [produtoId], references: [id], onDelete: Cascade)
   cor       Cor     @relation(fields: [corId], references: [id])
 
   @@id([produtoId, corId])
 }
 
 model Tamanho {
-  id       String           @id @default(uuid())
-  nome     String           @unique
-  produtos ProdutoTamanho[]
-}
-
-model ProdutoTamanho {
-  produtoId String
-  tamanhoId String
-  produto   Produto @relation(fields: [produtoId], references: [id])
-  tamanho   Tamanho @relation(fields: [tamanhoId], references: [id])
-
-  @@id([produtoId, tamanhoId])
+  id         String  @id @default(uuid())
+  nome       String
+  quantidade Int     @default(0)
+  produtoId  Int
+  produto    Produto @relation(fields: [produtoId], references: [id], onDelete: Cascade)
 }
