@@ -2,6 +2,8 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import ResetDataBase from './resetDataBase';
 import ProductRouter from './routes/products';
+import CategoryRouter from './routes/categories';
+import SubcategoryRouter from './routes/subcategories';
 
 const app = express();
 
@@ -18,7 +20,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/produtos', ProductRouter);
-
+app.use('/categorias', CategoryRouter);
+app.use('/subcategorias', SubcategoryRouter);
 
 ResetDataBase().then(() => {
   app.listen(3000, () => {
