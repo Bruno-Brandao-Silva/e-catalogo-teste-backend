@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import produtosPreset from './produtosPreset';
+import produtosPreset from './productsPreset';
 
 async function main(prisma: PrismaClient) {
     await prisma.produto.deleteMany({});
