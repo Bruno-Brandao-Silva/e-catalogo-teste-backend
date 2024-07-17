@@ -62,8 +62,6 @@ export default async () => {
     const prisma = new PrismaClient();
     try {
         await main(prisma);
-    } catch (e) {
-        throw e;
     } finally {
         await prisma.$disconnect();
     }

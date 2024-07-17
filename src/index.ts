@@ -1,27 +1,20 @@
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import ResetDataBase from './resetDataBase';
-import ProductRouter from './routes/products';
-import CategoryRouter from './routes/categories';
-import SubcategoryRouter from './routes/subcategories';
+import routes from './routes';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  console.error(err.stack);
+app.use((err: string, req: Request, res: Response, next?: NextFunction) => {
+  console.error(err);
   res.status(500).send('Contato o administrador do sistema');
+  next && next();
 });
 
-app.get('/', (req, res) => {
-  res.send('API online!');
-});
-
-app.use('/produtos', ProductRouter);
-app.use('/categorias', CategoryRouter);
-app.use('/subcategorias', SubcategoryRouter);
+app.use('/', routes);
 
 ResetDataBase().then(() => {
   app.listen(3000, () => {
